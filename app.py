@@ -11,38 +11,19 @@ from pandas_profiling import ProfileReport
 
 
 st.sidebar.header("Pick an activity for profiling")
-x_val= st.sidebar.selectbox("Pick a type of activity", ('Null class', 'Standing still (1 min)', 'Sitting and relaxing (1 min)', 'Lying down (1 min)', 'Walking (1 min)', 'Climbing stairs (1 min)', 'Waist bends forward (20x)', 'Frontal elevation of arms (20x)', 'Knees bending (crouching) (20x)', 'Cycling (1 min)', 'Jogging (1 min)', 'Running (1 min)', 'Jump front & back (20x)'))
+x_val= st.sidebar.selectbox("Pick a type of activity", ('Walking (1 min)', 'Running (1 min)'))
 
 
 #df = pd.read_csv("crops data.csv", na_values=['='])
 df = pd.read_csv('data/Updated_Subset_1.csv', na_values=['='])
+
 act_val = 0
-if x_val == 'Null class':
-    act_val = 0
-if x_val == 'Standing still (1 min)':
-    act_val = 1
-if x_val == 'Sitting and relaxing (1 min)':
-    act_val = 2
-if x_val == 'Lying down (1 min)':
-    act_val = 3
+
 if x_val == 'Walking (1 min)':
-    act_val = 4
-if x_val == 'Climbing stairs (1 min)':
-    act_val = 5
-if x_val == 'Waist bends forward (20x)':
-    act_val = 6
-if x_val == 'Frontal elevation of arms (20x)':
-    act_val = 7
-if x_val == 'Knees bending (crouching) (20x)':
-    act_val = 8
-if x_val == 'Cycling (1 min)':
-    act_val = 9
-if x_val == 'Jogging (1 min)':
-    act_val = 10
+    act_val = 0
 if x_val == 'Running (1 min)':
-    act_val = 11
-if x_val == 'Jump front & back (20x)':
-    act_val = 12
+    act_val = 1
+
 
 
 df = df[df['label'] == act_val]
@@ -130,5 +111,6 @@ profile = ProfileReport(df.loc[:,'acc_chest_x':'mag_arm_z'],
 st.title(f"mHealth Dataset Profiling in Streamlit for activity: {x_val}!")
 
 st.write(df)
-
-st_profile_report(profile)
+if st.sidebar.checkbox("Display Statistics", False):
+    st.subheader("Show mHealth Profile Statistics")
+    st_profile_report(profile)
