@@ -12,6 +12,8 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, RocCurveDi
 from sklearn.metrics import precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 def main():
     st.title('Streamlit mHealth Dataset WebApp')
     st.sidebar.title('This is the sidebar')
