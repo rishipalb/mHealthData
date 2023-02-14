@@ -48,8 +48,8 @@ x_train, x_test, y_train, y_test = split(df)
 def plot_metrics(metrics_list):
     if "Confusion Matrix" in metrics_list:
         st.subheader("Confusion Matrix")
-        ax1 = ConfusionMatrixDisplay.from_estimator(model, x_test, y_test, display_labels=class_names)
-        st.pyplot(ax1)
+        ConfusionMatrixDisplay.from_estimator(model, x_test, y_test, display_labels=class_names)
+        st.pyplot()
     if "ROC Curve" in metrics_list:
         st.subheader("ROC Curve")
         RocCurveDisplay.from_estimator(model, x_test, y_test)
