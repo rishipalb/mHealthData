@@ -13,7 +13,7 @@ from sklearn.metrics import precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
 
 def main():
-    st.title('Introduction to building Streamlit WebApp')
+    st.title('Streamlit mHealth Dataset WebApp')
     st.sidebar.title('This is the sidebar')
     st.sidebar.markdown('Let’s start with binary classification!!')
 if __name__ == "__main__":
