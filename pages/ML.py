@@ -11,17 +11,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, RocCurveDisplay, PrecisionRecallDisplay
 from sklearn.metrics import precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
 def main():
-    st.title('Streamlit mHealth Dataset WebApp')
+    st.title('Introduction to building Streamlit WebApp')
     st.sidebar.title('This is the sidebar')
     st.sidebar.markdown('Let’s start with binary classification!!')
 if __name__ == "__main__":
     main()
 
-@st.cache(persist= True)
+@st.cache_data(persist= True)
 def load():
     data= pd.read_csv("data/Updated_Subset_1.csv")
 #    label= LabelEncoder()
@@ -38,7 +36,7 @@ if st.sidebar.checkbox("Display data", False):
     st.write(df)
 
 
-@st.cache(persist=True)
+@st.cache_data(persist=True)
 def split(df):
     y = df.label
     x = df.drop(columns=["sub_id", "label"])
@@ -52,6 +50,8 @@ def plot_metrics(metrics_list):
         st.subheader("Confusion Matrix")
         ConfusionMatrixDisplay.from_estimator(model, x_test, y_test, display_labels=class_names)
         st.pyplot()
+        #cm=confusion_matrix(y_test, y_pred)
+        #ConfusionMatrixDisplay(cm,model.classes_).plot()
     if "ROC Curve" in metrics_list:
         st.subheader("ROC Curve")
         RocCurveDisplay.from_estimator(model, x_test, y_test)
