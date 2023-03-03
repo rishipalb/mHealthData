@@ -11,6 +11,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, RocCurveDisplay, PrecisionRecallDisplay
 from sklearn.metrics import precision_score, recall_score
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+from sklearn.linear_model import LinearRegression
+import seaborn as sns
+from sklearn.metrics import classification_report
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 def main():
     st.title('Introduction to building Streamlit WebApp')
@@ -62,8 +68,8 @@ def plot_metrics(metrics_list):
         st.pyplot()
 class_names = ["walk", "run"]
 
-st.sidebar.subheader("Choose classifier")
-classifier = st.sidebar.selectbox("Classifier", ("Support Vector Machine (SVM)", "Logistic Regression", "Random Forest", "Decision Tree"))
+st.sidebar.subheader("Select a machine learning model")
+classifier = st.sidebar.selectbox("Classifier", ("Support Vector Machine (SVM)", "Logistic Regression", "Random Forest", "Decision Tree", "K-Means Clustering","Multiple Regression"))
 if classifier == "Support Vector Machine (SVM)":
     st.sidebar.subheader("Hyperparameters")
     C = st.sidebar.number_input("C (Regularization parameter)", 0.01, 10.0, step=0.01, key="C")
@@ -138,3 +144,42 @@ if classifier == 'Decision Tree':
         st.write('Precision: ', precision_score(y_test, y_pred, labels=class_names).round(2))
         st.write('Recall: ', recall_score(y_test, y_pred, labels=class_names).round(2))
         plot_metrics(metrics)
+
+# If K-Means clustering is selected, display a slider for selecting the number of clusters
+if classifier == "K-Means Clustering":
+        
+            #data_k= pd.read_csv("data/Updated_Subset_1.csv")
+            data_k = df.drop(columns=["sub_id", "label"])
+            st.write("Select the number of clusters:")
+            n_clusters = st.slider("Number of clusters", min_value=2, max_value=10)
+
+            # Apply K-Means clustering to the data
+            kmeans = KMeans(n_clusters=n_clusters)
+            kmeans.fit(data_k)
+            labels = kmeans.labels_
+
+            # Display the clustering results in a scatter plot
+            pca = PCA(n_components=2)
+            principal_components = pca.fit_transform(data_k)
+            principal_df = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
+            principal_df['label'] = labels
+            st.write(sns.scatterplot(data=principal_df, x='PC1', y='PC2', hue='label'))
+
+  # If Multiple Regression is selected, display a list of independent variables and a dependent variable
+if classifier == "Multiple Regression":
+        #data_reg = pd.read_csv("data/Updated_Subset_1.csv")
+        data_reg = df.drop(columns=["sub_id", "label"])
+        st.write("Select the dependent variable:")
+        target_var = st.selectbox("Target Variable", list(data_reg.columns))
+
+        st.write("Select the independent variables:")
+        independent_vars = st.multiselect("Independent Variables", list(data_reg.columns), default=['ekg_1'])
+
+        # Train a Multiple Regression model and display the results
+        X = data_reg[independent_vars]
+        y = data_reg[target_var]
+        reg = LinearRegression().fit(X, y)
+        st.write("R-squared:", reg.score(X, y))
+
+load.clear()
+split.clear()
