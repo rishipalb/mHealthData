@@ -3,6 +3,7 @@ from sklearn import metrics
 import streamlit as st
 import pandas as pd
 import numpy as np
+import altair as alt
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -154,16 +155,28 @@ if classifier == "K-Means Clustering":
             n_clusters = st.slider("Number of clusters", min_value=2, max_value=10)
 
             # Apply K-Means clustering to the data
-            kmeans = KMeans(n_clusters=n_clusters)
+            kmeans = KMeans(n_clusters=n_clusters, n_init="auto")
             kmeans.fit(data_k)
-            labels = kmeans.labels_
+            groups = kmeans.labels_
 
             # Display the clustering results in a scatter plot
             pca = PCA(n_components=2)
             principal_components = pca.fit_transform(data_k)
             principal_df = pd.DataFrame(data=principal_components, columns=['PC1', 'PC2'])
-            principal_df['label'] = labels
-            st.write(sns.scatterplot(data=principal_df, x='PC1', y='PC2', hue='label'))
+            principal_df['group'] = groups
+            # st.write(sns.scatterplot(data=principal_df, x='PC1', y='PC2', hue='label'))
+            # scatter = sns.scatterplot(data=principal_df, x='PC1', y='PC2', hue='group')
+            # st.write(scatter)
+            chart = alt.Chart(principal_df).mark_circle(size=60).encode(
+            x='PC1:Q',
+            y='PC2:Q',
+            color='group'
+            ).properties(
+            width=600,
+            height=600
+            )
+            st.write('K-Mean Cluster')
+            st.write(chart)
 
   # If Multiple Regression is selected, display a list of independent variables and a dependent variable
 if classifier == "Multiple Regression":
