@@ -32,84 +32,32 @@ Table 1. Description of the dataset
 Column No.
 Column ID
 Description
-1
-sub_id
-Subject ID
-2
-acc_chest_x
-acceleration from the chest sensor (X axis)
-3
-acc_chest_y
-acceleration from the chest sensor (Y axis)
-4
-acc_chest_z
-acceleration from the chest sensor (Z axis)
-5
-ekg_1
-electrocardiogram signal (lead 1)
-6
-ekg_2
-electrocardiogram signal (lead 2)
-7
-acc_ankle_x
-acceleration from the left-ankle sensor (X axis)
-8
-acc_ankle_y
-acceleration from the left-ankle sensor (Y axis)
-9
-acc_ankle_z
-acceleration from the left-ankle sensor (Z axis)
-10
-gyro_ankle_x
-gyro from the left-ankle sensor (X axis)
-11
-gyro_ankle_y
-gyro from the left-ankle sensor (Y axis)
-12
-gyro_ankle_z
-gyro from the left-ankle sensor (Z axis)
-13
-mag_ankle_x
-magnetometer from the left-ankle sensor (X axis)
-14
-mag_ankle_y
-magnetometer from the left-ankle sensor (Y axis)
-15
-mag_ankle_z
-magnetometer from the left-ankle sensor (Z axis)
-16
-acc_arm_x
-acceleration from the right-lower-arm sensor (X axis)
-17
-acc_arm_y
-acceleration from the right-lower-arm sensor (Y axis)
-18
-acc_arm_z
-acceleration from the right-lower-arm sensor (Z axis)
-19
-gyro_arm_x
-gyro from the right-lower-arm sensor (X axis)
-20
-gyro_arm_y
-gyro from the right-lower-arm sensor (Y axis)
-21
-gyro_arm_z
-gyro from the right-lower-arm sensor (Z axis)
-22
-mag_arm_x
-magnetometer from the right-lower-arm sensor (X axis)
-23
-mag_arm_y
-magnetometer from the right-lower-arm sensor (Y axis)
-24
-mag_arm_z
-magnetometer from the right-lower-arm sensor (Z axis)
-25
-time_sec
- Time in seconds
-26
-label
-Label (0 for walking and 1 for running)
+1. sub_id: Subject ID
+2. acc_chest_x: acceleration from the chest sensor (X axis)
+3. acc_chest_y:acceleration from the chest sensor (Y axis)
+4. acc_chest_z: acceleration from the chest sensor (Z axis)
+5. ekg_1: electrocardiogram signal (lead 1)
+6. ekg_2: electrocardiogram signal (lead 2)
+7. acc_ankle_x: acceleration from the left-ankle sensor (X axis)
+8. acc_ankle_y: acceleration from the left-ankle sensor (Y axis)
+9. acc_ankle_z: acceleration from the left-ankle sensor (Z axis)
+10. gyro_ankle_x: gyro from the left-ankle sensor (X axis)
+11. gyro_ankle_y: gyro from the left-ankle sensor (Y axis)
+12. gyro_ankle_z: gyro from the left-ankle sensor (Z axis)
+13. mag_ankle_x: magnetometer from the left-ankle sensor (X axis)
+14. mag_ankle_y: magnetometer from the left-ankle sensor (Y axis)
+15. mag_ankle_z: magnetometer from the left-ankle sensor (Z axis)
+16. acc_arm_x: acceleration from the right-lower-arm sensor (X axis)
+17. acc_arm_y: acceleration from the right-lower-arm sensor (Y axis)
+18. acc_arm_z: acceleration from the right-lower-arm sensor (Z axis)
+19. gyro_arm_x: gyro from the right-lower-arm sensor (X axis)
+20. gyro_arm_y: gyro from the right-lower-arm sensor (Y axis)
+21. gyro_arm_z: gyro from the right-lower-arm sensor (Z axis)
+22. mag_arm_x: magnetometer from the right-lower-arm sensor (X axis)
+23. mag_arm_y: magnetometer from the right-lower-arm sensor (Y axis)
+24. mag_arm_z: magnetometer from the right-lower-arm sensor (Z axis)
+25. time_sec: Time in seconds
+26. label: Label (0 for walking and 1 for running)
 
 
 
