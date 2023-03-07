@@ -66,3 +66,6 @@ Description
 The original dataset is located at: https://archive.ics.uci.edu/ml/datasets/MHEALTH+Dataset
 
 For the subset dataset used for analysis for this project, the column ‘Label’ designates activity: Walking (1min) as “0” and Running (1min) as “1”.
+
+Streamlit app is available at: https://rishipalb-mhealthdata-app-s7u1np.streamlit.app/
+
