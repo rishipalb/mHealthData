@@ -1,4 +1,6 @@
 # mHealthData
+For this project, we used the mHealth dataset which consists of twelve activities. As a proof of concept, we used the activities such as walking and running to build a predictive model for differentiating these activities.
+
 
 a.     Data Source(s): 
 The dataset for this assignment has data on measurements of body motion and vital signs collected from 10 volunteers performing 12 physical activities.  The sensors captured the activities at a sampling rate of 50Hz. For the purpose of this project only two activities were selected, namely, Walking (1min) and Running (1min). The data dictionary is given below:
